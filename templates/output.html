@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>Science Policy Form</title>
+
+<link href='/css/policy.css' rel='stylesheet' type='text/css'>
+
+<script>
+function openRep(evt, repName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(repName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+<style>
+ 
+
+</style>
+
+<link href='/css/policy.css' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+<div height=100%>
+<h1>Science Policy Letter</h1>
+<a href="/faq">Frequently Asked Questions</a>
+<br><br>
+Here are some suggestions on your writing:<br><br>
+<div id="proof_read">
+<iframe srcdoc="<p>{{suggestions | safe}}</p>" src="demo_iframe_srcdoc.htm"></iframe>
+</div>
+
+<h3>Edit your message</h3>
+with the suggestions above, and click Submit
+ <form action="/" method="POST">
+    <table>
+        <tr><td width="100">Name:</td><td><input class="basic" type="text" name="username" value="{{username}}"></td></tr>
+        <tr><td>Affiliation:</td><td><input class="basic" type="text" name="aff" value="{{aff}}"></td></tr>
+        <tr><td>Address:</td><td><input class="basic" type="text" name="street" value="{{street}}"></td></tr>
+        <tr><td>Stance:</td><td><input class="basic" type="text" name="stance" value="{{stance}}"></td></tr>
+        <tr><td>Subject:</td><td><input class="basic" type="text" name="subject" value="{{subject}}"></td></tr>
+        <tr><td>Body:</td><td>
+        <textarea class="basic" rows="10" cols="50" name="body">{{body}}</textarea></td></tr>
+        </table>
+        <br><br>
+        <input class="submit" type="submit" name="my-form" value="Submit">
+    </form>
+
+<h3>Click the name below to see the call scripts and emails</h3>
+ <ul class="tab">
+ {%for x in list_of_reps%}
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openRep(event, '{{x.name}}')">{{x.name}}</a></li>
+ {%endfor%}
+</ul>
+
+{%for x in list_of_reps%}
+
+<section id="{{x.name}}" class="tabcontent">
+
+<div id="phone">
+<h3>Call Script</h3>
+<p>Call {{x.title}} {{x.name}} at {{x.phone}}.</p>
+<p>Calling your representative’s office is an effective way of making your voice heard
+    on a topic that requires only a short explanation. Please note that the staffer
+    answering your call may not be able to answer your specific question or make a
+    policy statement. If so, ask them to please take a message to the representative
+    on your behalf. Please be polite, respectful, and concise. You can do this! </p>
+<textarea class="letter" rows="30" cols="60" type="text" name="phone">
+My name is {{username}}. I'm calling {{x.title}} {{x.name}} to {{stance}} your stance on {{subject}}.
+
+{{body}}
+</textarea>
+</div>
+
+<div id="email">
+<h3>Email</h3>
+<p>Cut and paste this text into the contact form for <a href={{x.url}}>{{x.title}} {{x.name}}</a>.</p>
+<textarea class="letter" rows="30" cols="60" type="text" name="letter">
+The Honorable {{x.letter_address()}}
+
+Dear {{x.title}} {{x.name}},
+
+My name is {{username}}, and I {{stance}} your stance on {{subject}}.
+
+{{body}}
+
+{{signature}}
+
+</textarea></div>
+
+
+</section>
+ {%endfor%}
+
+
+<br><br>
+<a href="/">Click here to go back.</a>
+</div>
+
+</body>
+</html>
+
+
+
+

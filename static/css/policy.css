@@ -1,0 +1,115 @@
+input.basic, textarea { 
+    padding: 9px; 
+    border: solid 1px #E5E5E5; 
+    outline: 0; 
+    font: normal 13px/100% Verdana, Tahoma, sans-serif; 
+    width: 300px; 
+    height: 40px;
+    background: #FFFFFF; 
+    } 
+
+input.submit { 
+    padding: 9px; 
+    border: solid 1px #E5E5E5; 
+    outline: 0; 
+    font: normal 13px/100% Verdana, Tahoma, sans-serif; 
+    width: 200px; 
+    height: 40px;
+    background: #d3d3d3; 
+    } 
+
+textarea.basic { 
+    width: 400px; 
+    max-width: 400px; 
+    height: 150px; 
+    line-height: 150%; 
+    } 
+
+textarea.letter { 
+    width: 500px; 
+    max-width: 500px; 
+    height: 400px; 
+    line-height: 150%; 
+    } 
+   
+input:hover, textarea:hover, 
+input:focus, textarea:focus { 
+    border-color: #C9C9C9; 
+    } 
+   
+.form label { 
+    margin-left: 10px; 
+    color: #999999; 
+    } 
+   
+.submit input { 
+    width: auto; 
+    padding: 9px 15px; 
+    background: #a3a3a3; 
+    border: 0; 
+    font-size: 14px; 
+    color: #a3a3a3; 
+    }
+
+
+/* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin: auto;
+    height:800px;
+}
+
+div#email {
+    width: 40%;
+    margin-left: 45%;
+}
+
+div#phone {
+    width: 40%;
+    float: left
+}
+
+div#proof_read {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+
+}
+
+iframe {
+    width:100%;
+    border:0;
+    height:200px;
+}

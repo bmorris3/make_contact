@@ -1,0 +1,50 @@
+{"congress": {
+  "114": {
+    "chamber": {
+      "house": {
+        "committee": {
+          "appropriations": {
+            "members": ["Harold Rogers", "Nita Lowey"],
+            "subcommittee": {
+              "Commerce, Justice, Science, and Related Agencies": {
+                "members": ["John Culberson", "Robert Aderholt", "JOHN CARTER", "JAIME HERRERA BEUTLER", "DEREK KILMER", "STEVEN PALAZZO", "MARTHA ROBY", "JOSE SERRANO"]},
+              "Energy and Water Development": {
+                "members": ["MICHAEL SIMPSON", "CHARLES FLEISCHMANN", "MARCY KAPTUR", "KEN CALVERT", "JEFF FORTENBERRY", "RODNEY FRELINGHUYSEN", "KAY GRANGER", "JAIME HERRERA BEUTLER", "LUCILLE ROYBAL-ALLARD", "DAVID VALADAO", "PETER VISCLOSKY"]},
+              "Labor, Health and Human Services, Education, and Related Agencies": {
+                "members": ["TOM COLE", "STEVE WOMACK", "ROSA DELAURO", "CHARLES DENT", "CHARLES FLEISCHMANN", "ANDY HARRIS", "BARBARA LEE", "MARTHA ROBY", "LUCILLE ROYBAL-ALLARD", "MICHAEL SIMPSON"]}
+              }
+            },
+          "Science, Space and Technology": {
+            "members": ["LAMAR SMITH", "FRANK LUCAS", "EDDIE JOHNSON"],
+            "subcommittee": {
+                "Energy": {"members": ["RANDY WEBER", "STEVE KNIGHT", "EDDIE JOHNSON", "LAMAR SMITH", "MO BROOKS", "KATHERINE CLARK", "BARBARA COMSTOCK", "RANDY HULTGREN", "DANIEL LIPINSKI", "BARRY LOUDERMILK", "THOMAS MASSIE", "ED PERLMUTTER", "DANA ROHRABACHER", "ERIC SWALWELL", "MARC VEASEY"]},
+                "Environment": {"members": ["JIM BRIDENSTINE", "BRUCE WESTERMAN", "SUZANNE BONAMICI", "EDDIE JOHNSON", "LAMAR SMITH", "RALPH ABRAHAM", "BRIAN BABIN", "AMI BERA", "BILL FOSTER", "JOHN MOOLENAAR", "GARY PALMER", "JAMES SENSENBRENNER JR.", "MARK TAKANO", "RANDY WEBER"]},
+                "Oversight": {"members": ["BARRY LOUDERMILK", "DARIN LAHOOD", "DONALD BEYER", "EDDIE JOHNSON", "LAMAR SMITH", "WARREN DAVIDSON", "ZOE LOFGREN", "THOMAS MASSIE", "BILL POSEY", "JAMES SENSENBRENNER JR."]},
+                "Research and Technology": {"members": ["BARBARA COMSTOCK", "JOHN MOOLENAAR", "DANIEL LIPINSKI", "EDDIE JOHNSON", "LAMAR SMITH", "RALPH ABRAHAM", "SUZANNE BONAMICI", "KATHERINE CLARK", "ELIZABETH ESTY", "RANDY HULTGREN", "DARIN LAHOOD", "FRANK LUCAS", "MICHAEL MCCAUL", "GARY PALMER", "ERIC SWALWELL", "PAUL TONKO", "BRUCE WESTERMAN"]},
+                "Space": {"members": ["BRIAN BABIN", "MO BROOKS", "EDDIE JOHNSON", "LAMAR SMITH", "AMI BERA", "DONALD BEYER", "JIM BRIDENSTINE", "WARREN DAVIDSON", "STEVE KNIGHT", "ZOE LOFGREN", "FRANK LUCAS", "MICHAEL MCCAUL", "ED PERLMUTTER", "BILL POSEY", "DANA ROHRABACHER", "MARC VEASEY"]}
+              }
+             }
+           }
+         },
+       "senate": {
+         "committee": {
+           "appropriations": {
+             "members": ["THAD COCHRAN"],
+             "subcommittee": {
+               "Commerce, Justice, Science, and Related Agencies": {"members": ["RICHARD SHELBY", "THAD COCHRAN", "LAMAR ALEXANDER", "TAMMY BALDWIN", "JOHN BOOZMAN", "SHELLEY CAPITO", "SUSAN COLLINS", "CHRIS COONS", "DIANNE FEINSTEIN", "LINDSEY GRAHAM", "JAMES LANKFORD", "PATRICK LEAHY", "LISA MURKOWSKI", "CHRISTOPHER MURPHY", "JOHN REED", "JEANNE SHAHEEN"]},
+               "Energy and Water Development": {"members": ["LAMAR ALEXANDER", "DIANNE FEINSTEIN", "THAD COCHRAN", "SUSAN COLLINS", "CHRIS COONS", "RICHARD DURBIN", "LINDSEY GRAHAM", "JOHN HOEVEN", "JAMES LANKFORD", "MITCH MCCONNELL", "JEFF MERKLEY", "LISA MURKOWSKI", "PATTY MURRAY", "JEANNE SHAHEEN", "RICHARD SHELBY", "JON TESTER", "TOM UDALL"]},
+               "Labor, Health and Human Services, Education, and Related Agencies": {"members": ["ROY BLUNT", "PATTY MURRAY", "LAMAR ALEXANDER", "TAMMY BALDWIN", "SHELLEY CAPITO", "BILL CASSIDY", "THAD COCHRAN", "RICHARD DURBIN", "LINDSEY GRAHAM", "JAMES LANKFORD", "JEFF MERKLEY", "JERRY MORAN", "JOHN REED", "BRIAN SCHATZ", "JEANNE SHAHEEN", "RICHARD SHELBY"]}
+               }
+             },
+           "Commerce, Science, and Transportation": {
+             "members": ["JOHN THUNE", "BILL NELSON"],
+             "subcommittee": {
+               "Space, Science and Competitiveness": {"members": ["TED CRUZ", "GARY PETERS", "BILL NELSON", "JOHN THUNE", "CORY BOOKER", "STEVE DAINES", "CORY GARDNER", "EDWARD MARKEY", "JERRY MORAN", "MARCO RUBIO", "BRIAN SCHATZ", "DAN SULLIVAN", "TOM UDALL"]}
+             }
+           }
+         }
+       }
+     }
+   }
+  }
+ }
