@@ -17,9 +17,6 @@ class MoCInfo(object):
         if 'line2' in json_input['address'][0]:
             json_input['address'][0]['line1'] += ', ' + json_input['address'][0]['line2']
 
-
-        print(json_input['address'][0]['line1'])
-
         address = ', '.join([json_input['address'][0]['line1'],
                              (json_input['address'][0]['city'] + ' ' +
                               json_input['address'][0]['state']),
@@ -41,8 +38,8 @@ class MoCInfo(object):
         if self._is_MoC is None:
             self._is_MoC = (('senate' in self.address.lower()) or
                             ('house' in self.address.lower() or
-                             'SOB' in self.address or
-                             'HOB' in self.address) and
+                             'sob' in self.address.lower() or
+                             'hob' in self.address.lower()) and
                             not ('white' in self.address.lower()))
         return self._is_MoC
 

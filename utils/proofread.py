@@ -31,7 +31,7 @@ class Proof(object):
 
     def get_suggestions(self):
         """Check for suggestions"""
-        tests_to_run = [self.gratitude, self.request_response, self.no_profanity]
+        tests_to_run = [self.gratitude, self.request_response]
 
         all_suggestions = ""
 

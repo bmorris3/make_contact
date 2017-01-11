@@ -7,9 +7,21 @@ from .data import MoCInfo
 __all__ = ['query_for_reps']
 
 
+def vet_official_data(official):
+    if (('phones' in official) and ('address' in official) and
+            ('urls' in official)):
+        return True
+    return False
+
+
 def get_members_of_congress(json_input):
-    officials_list = [MoCInfo.from_json(j) for j in json_input['officials']]
+
+    vetted_officials = [official for official in json_input['officials']
+                        if vet_official_data(official)]
+
+    officials_list = [MoCInfo.from_json(j) for j in vetted_officials]
     moc_list = [official for official in officials_list if official.is_MoC]
+
     return moc_list
 
 
