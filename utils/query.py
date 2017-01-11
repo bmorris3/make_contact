@@ -1,31 +1,16 @@
 
 import json
 import sys
+import os
+import yaml
 
-from .data import MoCInfo
+from .data import ContactInfo
 
-__all__ = ['query_for_reps']
-
-
-def vet_official_data(official):
-    if (('phones' in official) and ('address' in official) and
-            ('urls' in official)):
-        return True
-    return False
+__all__ = ['query_google_for_names', 'get_unitedstates_for_MoC', 'get_MoCs']
 
 
-def get_members_of_congress(json_input):
-
-    vetted_officials = [official for official in json_input['officials']
-                        if vet_official_data(official)]
-
-    officials_list = [MoCInfo.from_json(j) for j in vetted_officials]
-    moc_list = [official for official in officials_list if official.is_MoC]
-
-    return moc_list
-
-
-def query_for_reps(address, key='AIzaSyBDUwLqoWAiAS4sTfFccdaz583W060jbok'):
+def query_google_for_names(address,
+                           key='AIzaSyBDUwLqoWAiAS4sTfFccdaz583W060jbok'):
 
     py3 = sys.version_info >= (3, 0)
 
@@ -45,8 +30,6 @@ def query_for_reps(address, key='AIzaSyBDUwLqoWAiAS4sTfFccdaz583W060jbok'):
         with urllib.request.urlopen(req) as response:
             output = json.loads(response.read().decode('ascii'))
 
-        return get_members_of_congress(output)
-
     else:
         import urllib2
 
@@ -56,4 +39,48 @@ def query_for_reps(address, key='AIzaSyBDUwLqoWAiAS4sTfFccdaz583W060jbok'):
         with urllib2.urlopen(req) as response:
             output = json.loads(response.read().decode('ascii'))
 
-        return get_members_of_congress(output)
+    officials_list = [ContactInfo.from_google(j) for j in output['officials']]
+    moc_list = [official for official in officials_list if official.is_MoC]
+    name_list = [moc.name for moc in moc_list]
+
+    return name_list
+
+
+def get_unitedstates_for_MoC():
+    # Get detailed data from unitedstates/congress-legislators
+
+    path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                        'congress-legislators', 'legislators-current.yaml')
+
+    with open(path, 'r') as stream:
+        legislators = yaml.load(stream, Loader=yaml.Loader)
+
+    # Make dictionary by name of current members of congress
+    members_of_congress = {l['name']['official_full']: l['terms'][-1]
+                           for l in legislators}
+
+    return members_of_congress
+
+
+def get_MoCs(address):
+    list_of_names = query_google_for_names(address)
+
+    mocs = []
+    for name in list_of_names:
+        moc_info = ContactInfo.from_unitedstates(name,
+                                                 us_congress_data.data[name])
+        mocs.append(moc_info)
+    return mocs
+
+
+class USCongress(object):
+    def __init__(self):
+        self._data = None
+
+    @property
+    def data(self):
+        if self._data is None:
+            self._data = get_unitedstates_for_MoC()
+        return self._data
+
+us_congress_data = USCongress()

@@ -4,7 +4,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 
-from utils import query_for_reps, Proof
+from utils import get_MoCs, Proof
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
@@ -23,7 +23,7 @@ def form():
     stance = request.form['stance']
     body = request.form['body']
 
-    list_of_reps = query_for_reps(street)
+    list_of_mocs = get_MoCs(street)
 
     signature = '\n'.join([username] + [i.strip() for i in street.split(',')])
 
@@ -37,7 +37,7 @@ def form():
                            subject=subject,
                            stance=stance,
                            body=body,
-                           list_of_reps=list_of_reps,
+                           list_of_reps=list_of_mocs,
                            signature=signature,
                            suggestions=suggestions)
 
