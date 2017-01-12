@@ -90,3 +90,6 @@ ENV/
 
 # Annoying Mac filesystem nonsense
 *DS_Store
+
+# Pycharm
+.idea
