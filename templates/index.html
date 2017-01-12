@@ -44,7 +44,7 @@
             </div>
         </div>
     {% endfor %}
-    <center><input class="button" type="submit" value="Submit"></center>
+    <center><input class="button button-primary" type="submit" value="Submit"></center>
     </form>
 
 {% if signature %}
@@ -58,7 +58,7 @@
 
     {% for rep in list_of_reps %}
 
-    <section id="{{rep.name}}" class="tabcontent">
+    <section id="{{rep.name}}" class="tabcontent u-cf">
 
     <div id="phone" class="six columns">
         <h5>Call Script</h5>
@@ -95,13 +95,38 @@ My name is {{form.data.name}}, and I {{form.data.stance}} your stance on {{form.
     </section>
     {% endfor %}
 
-
     <br><br>
-    <a href="/">Click here to start over.</a>
+    <p>
+        <a href="/">Click here to start over.</a>
+    </p>
     </div>
 
 {% endif %}
 
 </div>
+
+<script type="text/javascript">
+function openRep(evt, repName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(repName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
 
 {% endblock %}

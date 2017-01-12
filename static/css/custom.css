@@ -2,9 +2,17 @@ span.radio {
     padding-right:2rem;
 }
 
-@media (min-width:550px) {
+@media (min-width:768px) {
     .textright {
         text-align:right;
+    }
+    .form-label {
+        height:38px;
+        line-height:38px;
+    }
+    span.radio {
+        line-height:38px;
+        margin-botom:12px;
     }
 }
 
@@ -33,7 +41,7 @@ ul.tab {
     padding: 0;
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #e6f2ff;
 }
 
 /* Float the tab items side by side */
@@ -54,10 +62,10 @@ ul.tab li a {
 }
 
 /* Change background color of links on hover */
-ul.tab li a:hover {background-color: #ddd;}
+ul.tab li a:hover {background-color: #e6f2ff;}
 
 /* Create an active/current tablink class */
-ul.tab li a:focus, .active {background-color: #ccc;}
+ul.tab li a:focus, .active {background-color: #b3d7ff;}
 
 /* Style the tab content */
 .tabcontent {
@@ -66,17 +74,12 @@ ul.tab li a:focus, .active {background-color: #ccc;}
     border: 1px solid #ccc;
     border-top: none;
     margin: auto;
-    height:800px;
+    height: auto;
+    overflow: auto;
 }
 
 div#proof_read {
     border: 1px solid #ccc;
     padding: 6px 12px;
 
-}
-
-iframe {
-    width:100%;
-    border:0;
-    height:200px;
 }

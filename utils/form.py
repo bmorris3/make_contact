@@ -1,6 +1,5 @@
 from wtforms import Form, validators
 from wtforms.fields import RadioField, SelectField, StringField, TextAreaField
-
 from wtforms.validators import ValidationError
 
 from utils import query_for_reps
@@ -9,7 +8,7 @@ def address_check(form, field):
     try:
         query_for_reps(field.data)
     except:
-        raise ValidationError('Your address could not be processed. Sorry.')
+        raise ValidationError("We couldn't process the address you entered. Sorry.")
 
 class ContactForm(Form):
     name    = StringField('Name', [validators.DataRequired()], render_kw={"placeholder": "Brett Morris"})
