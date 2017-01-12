@@ -4,9 +4,10 @@ from flask import Flask
 from flask import request
 from flask import render_template
 
-from utils import query_for_reps, Proof, ContactForm
+from utils import get_MoCs, Proof, ContactForm
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -18,7 +19,7 @@ def index():
         address = form.data['address']
         body = form.data['body']
 
-        list_of_reps = query_for_reps(address)
+        list_of_mocs = get_MoCs(address)
 
         signature = name + '\n'
         if len(title) > 1:
@@ -30,9 +31,10 @@ def index():
         proof = Proof(body)
         suggestions = proof.get_suggestions()
         return render_template('index.html', form=form, suggestions=suggestions, 
-                               list_of_reps=list_of_reps, signature=signature)
+                               list_of_reps=list_of_mocs, signature=signature)
     else:
         return render_template('index.html', form=form)
+
 
 @app.route('/faq')
 def faq():

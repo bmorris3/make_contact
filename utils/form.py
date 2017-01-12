@@ -2,13 +2,15 @@ from wtforms import Form, validators
 from wtforms.fields import RadioField, SelectField, StringField, TextAreaField
 from wtforms.validators import ValidationError
 
-from utils import query_for_reps
+from utils import query_google_for_names
+
 
 def address_check(form, field):
     try:
-        query_for_reps(field.data)
+        query_google_for_names(field.data)
     except:
         raise ValidationError("We couldn't process the address you entered. Sorry.")
+
 
 class ContactForm(Form):
     name    = StringField('Name', [validators.DataRequired()], render_kw={"placeholder": "Brett Morris", "icon": "user"})
