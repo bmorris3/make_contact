@@ -4,46 +4,41 @@ from flask import Flask
 from flask import request
 from flask import render_template
 
-from utils import get_MoCs, Proof
+from utils import get_MoCs, Proof, ContactForm
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    form = ContactForm(request.form)
+    if request.method == 'POST' and form.validate():
+        name = form.data['name']
+        title = form.data['title']
+        affil = form.data['affil']
+        address = form.data['address']
+        body = form.data['body']
 
+        list_of_mocs = get_MoCs(address)
 
-@app.route('/', methods=['POST'])
-def form():
-    username = request.form['username']
-    aff = request.form['aff']
-    street = request.form['street']
-    subject = request.form['subject']
-    stance = request.form['stance']
-    body = request.form['body']
+        signature = name + '\n'
+        if len(title) > 1:
+            signature = title + ' ' + signature
+        if affil:
+            signature += affil + '\n'
+        signature += '\n'.join([i.strip() for i in address.split(',')])
 
-    list_of_mocs = get_MoCs(street)
+        proof = Proof(body)
+        suggestions = proof.get_suggestions()
+        return render_template('index.html', form=form, suggestions=suggestions, 
+                               list_of_reps=list_of_mocs, signature=signature)
+    else:
+        return render_template('index.html', form=form)
 
-    signature = '\n'.join([username] + [i.strip() for i in street.split(',')])
-
-    proof = Proof(body)
-    suggestions = proof.get_suggestions()
-
-    return render_template("output.html",
-                           username=username,
-                           aff=aff,
-                           street=street,
-                           subject=subject,
-                           stance=stance,
-                           body=body,
-                           list_of_reps=list_of_mocs,
-                           signature=signature,
-                           suggestions=suggestions)
 
 @app.route('/faq')
 def faq():
-    return app.send_static_file('faq.html')
+    return render_template('faq.html')
     
 if __name__ == '__main__':
     app.run()
