@@ -17,7 +17,7 @@
             {{suggestions | safe}}
         </p>
 
-        <p>Edit your message with the suggestions above, and click Submit again.</p>
+        <p>Edit your message with the suggestions above, and click resubmit.</p>
     {% endif %}
 
     <form action="/" method="POST">
@@ -51,7 +51,7 @@
     {% endfor %}
     <center>
     <button class="button button-primary" type="submit" value="Submit">
-        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>&nbsp;Submit
+        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>&nbsp;{% if suggestions %}re{% endif %}submit
         </button>
     </center>
     </form>
