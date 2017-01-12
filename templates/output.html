@@ -1,43 +1,8 @@
-<html>
-<head>
-<title>Science Policy Form</title>
+{% extends "base.html" %}
 
-<link href='/css/policy.css' rel='stylesheet' type='text/css'>
+{% block content %}
 
-<script>
-function openRep(evt, repName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(repName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-</script>
-
-<style>
- 
-
-</style>
-
-<link href='/css/policy.css' rel='stylesheet' type='text/css'>
-
-
-</head>
-<body>
-<div height=100%>
+<div style="height:100%;">
 <h1>Science Policy Letter</h1>
 <a href="/faq">Frequently Asked Questions</a>
 <br><br>
@@ -62,7 +27,7 @@ with the suggestions above, and click Submit
         <input class="submit" type="submit" name="my-form" value="Submit">
     </form>
 
-<h3>Click the name below to see the call scripts and emails</h3>
+<h3>Click the names below to see the call scripts and emails</h3>
  <ul class="tab">
  {%for x in list_of_reps%}
   <li><a href="javascript:void(0)" class="tablinks" onclick="openRep(event, '{{x.name}}')">{{x.name}}</a></li>
@@ -113,9 +78,7 @@ My name is {{username}}, and I {{stance}} your stance on {{subject}}.
 <a href="/">Click here to go back.</a>
 </div>
 
-</body>
-</html>
-
+{% endblock %}
 
 
 

@@ -1,28 +1,107 @@
-<html>
-<head>
-<title>Science Policy Form</title>
-<script>
+{% extends "base.html" %}
 
-</script>
+{% block title %}Science Policy Form{% endblock %}
 
-<link href='/css/policy.css' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<h1>Science Policy Form</h1>
-<a href="/faq">Frequently Asked Questions</a>
-<br><br>
+{% block content %}
+
+<div class="container">
+    <h1 class="center">Science Policy Form</h1>
+    <p class="center">
+        <a href="/faq">Frequently Asked Questions</a>
+    </p>
+    <br>
+
+    {% if suggestions %}
+        <h5>Here are some suggestions on your writing:</h5>
+        <p id="proof_read">
+            {{suggestions | safe}}
+        </p>
+
+        <p>Edit your message with the suggestions above, and click Submit again.</p>
+    {% endif %}
+
     <form action="/" method="POST">
-    <table>
-        <tr><td width="100">Name:</td><td><input class="basic" type="text" name="username" value="Brett Morris"></td></tr>
-        <tr><td>Affiliation:</td><td><input class="basic" type="text" name="aff" value="University of Washington"></td></tr>
-        <tr><td>Address:</td><td><input class="basic" type="text" name="street" value="60 Garden St, Cambridge, MA 02138"></td></tr>
-        <tr><td>Stance:</td><td><input class="basic" type="text" name="stance" value="support"></td></tr>
-        <tr><td>Subject:</td><td><input class="basic" type="text" name="subject" value="House Bill 1234"></td></tr>
-      	<tr><td>Body:</td><td>
-        <textarea class="basic" rows="10" cols="50" name="body">Here are my great thoughts...</textarea></td></tr>
-        </table>
-        <br><br>
-        <input class="submit" type="submit" name="my-form" value="Submit">
+    {% for field in form %}
+        <div class="row">
+            <div class="four columns textright">
+                <span class="form-label">{{ field.label }}:</span>
+            </div>
+            {% if field.type == 'RadioField' %}
+                <div class="eight columns">
+                {% for subfield in field %}
+                    <span class="radio">{{ subfield() }}&nbsp;&nbsp;{{ subfield.label }}</span>
+                {% endfor %}
+            {% else %}
+                <div class="seven columns"> {{ field() }}
+            {% endif %}
+            {% if field.errors %}
+                <p class="error">
+                {% for error in field.errors %}
+                    {{ error }}{% if not loop.last %}<br>{% endif %}
+                {% endfor %}
+                </p>
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <center><input class="button" type="submit" value="Submit"></center>
     </form>
-</body>
-</html>
+
+{% if signature %}
+
+    <h4>Click the names below to see the call scripts and emails</h4>
+    <ul class="tab">
+    {% for rep in list_of_reps %}
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openRep(event, '{{rep.name}}')">{{rep.title[:3]}}. {{rep.name}}</a></li>
+    {% endfor %}
+    </ul>
+
+    {% for rep in list_of_reps %}
+
+    <section id="{{rep.name}}" class="tabcontent">
+
+    <div id="phone" class="six columns">
+        <h5>Call Script</h5>
+        <p>Call {{rep.title}} {{rep.name}} at {{rep.phone}}.</p>
+        <p>Calling your representative’s office is an effective way of making your voice heard
+            on a topic that requires only a short explanation. Please note that the staffer
+            answering your call may not be able to answer your specific question or make a
+            policy statement. If so, ask them to please take a message to the representative
+            on your behalf. Please be polite, respectful, and concise. You can do this! </p>
+        <textarea class="letter" rows="12" type="text" name="phone">
+My name is {{form.data.name}}. I'm calling {{rep.title}} {{rep.name}} to {{form.data.stance}} your stance on {{form.data.subject}}.
+
+{{form.data.body}}
+        </textarea>
+    </div>
+
+    <div id="email" class="six columns">
+        <h5>Email</h5>
+        <p>Cut and paste this text into the contact form for <a href={{rep.url}}>{{rep.title}} {{rep.name}}</a>.</p>
+        <textarea class="letter" rows="20" type="text" name="letter">
+The Honorable {{rep.letter_address()}}
+
+Dear {{rep.title}} {{rep.name}},
+
+My name is {{form.data.name}}, and I {{form.data.stance}} your stance on {{form.data.subject}}.
+
+{{form.data.body}}
+
+{{signature}}
+        </textarea>
+    </div>
+
+
+    </section>
+    {% endfor %}
+
+
+    <br><br>
+    <a href="/">Click here to go back.</a>
+    </div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

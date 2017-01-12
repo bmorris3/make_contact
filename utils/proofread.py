@@ -4,7 +4,7 @@ default_suggestions = """
 Here are some suggestions that are useful for everyone:
 - Please use a reliable spell-checker and grammar-checker before sending your email.
 - Personalize your letter.
-- Use factual evidences to support your stance.
+- Use factual evidence to support your stance.
 - Be professional, courteous and concise.
 - If you are sending a letter, use your letterhead if possible.
 - If you are sending a letter, sign it; only one signatory per letter.
