@@ -2,6 +2,12 @@ span.radio {
     padding-right:2rem;
 }
 
+@media (max-width:767px) {
+    .vanish {
+        display:none;
+    }
+}
+
 @media (min-width:768px) {
     .textright {
         text-align:right;
@@ -30,8 +36,9 @@ textarea {
 }
 
 .error {
-    color:red;
+    color:#b30000;
     margin-top:-1.5rem;
+    margin-bottom:1.5rem;
 }
 
 /* Style the tabs */

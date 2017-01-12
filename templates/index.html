@@ -6,9 +6,9 @@
 
 <div class="container">
     <h1 class="center">Science Policy Form</h1>
-    <p class="center">
-        <a href="/faq">Frequently Asked Questions</a>
-    </p>
+    <h5 class="center">
+        <a href="/faq"><i class="fa fa-question-circle fa-fw" aria-hidden="true"></i> Frequently Asked Questions</a>
+    </h5>
     <br>
 
     {% if suggestions %}
@@ -24,27 +24,36 @@
     {% for field in form %}
         <div class="row">
             <div class="four columns textright">
-                <span class="form-label">{{ field.label }}:</span>
+                <span class="form-label">
+                    <span class="vanish">
+                        <i class="fa fa-{{field.render_kw.icon}} fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;
+                    </span>
+                    {{ field.label }}:
+                </span>
             </div>
             {% if field.type == 'RadioField' %}
-                <div class="eight columns">
+                <div class="seven columns formfield">
                 {% for subfield in field %}
                     <span class="radio">{{ subfield() }}&nbsp;&nbsp;{{ subfield.label }}</span>
                 {% endfor %}
             {% else %}
-                <div class="seven columns"> {{ field() }}
+                <div class="seven columns formfield"> {{ field() }}
             {% endif %}
             {% if field.errors %}
                 <p class="error">
                 {% for error in field.errors %}
-                    {{ error }}{% if not loop.last %}<br>{% endif %}
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ error }}{% if not loop.last %}<br>{% endif %}
                 {% endfor %}
                 </p>
             {% endif %}
             </div>
         </div>
     {% endfor %}
-    <center><input class="button button-primary" type="submit" value="Submit"></center>
+    <center>
+    <button class="button button-primary" type="submit" value="Submit">
+        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>&nbsp;Submit
+        </button>
+    </center>
     </form>
 
 {% if signature %}
@@ -61,7 +70,7 @@
     <section id="{{rep.name}}" class="tabcontent u-cf">
 
     <div id="phone" class="six columns">
-        <h5>Call Script</h5>
+        <h5><i class="fa fa-phone-square fa-fw" aria-hidden="true"></i>&nbsp;Call Script</h5>
         <p>Call {{rep.title}} {{rep.name}} at {{rep.phone}}.</p>
         <p>Calling your representative’s office is an effective way of making your voice heard
             on a topic that requires only a short explanation. Please note that the staffer
@@ -76,7 +85,7 @@ My name is {{form.data.name}}. I'm calling {{rep.title}} {{rep.name}} to {{form.
     </div>
 
     <div id="email" class="six columns">
-        <h5>Email</h5>
+        <h5><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</h5>
         <p>Cut and paste this text into the contact form for <a href={{rep.url}}>{{rep.title}} {{rep.name}}</a>.</p>
         <textarea class="letter" rows="20" type="text" name="letter">
 The Honorable {{rep.letter_address()}}
@@ -96,8 +105,8 @@ My name is {{form.data.name}}, and I {{form.data.stance}} your stance on {{form.
     {% endfor %}
 
     <br><br>
-    <p>
-        <a href="/">Click here to start over.</a>
+    <p class="center">
+        <a href="/" class="button button-primary"><i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Click here to start over</a>
     </p>
     </div>
 
