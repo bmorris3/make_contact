@@ -1,28 +1,141 @@
-<html>
-<head>
-<title>Science Policy Form</title>
-<script>
+{% extends "base.html" %}
 
+{% block title %}Science Policy Form{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="center">Science Policy Form</h1>
+    <h5 class="center">
+        <a href="/faq"><i class="fa fa-question-circle fa-fw" aria-hidden="true"></i> Frequently Asked Questions</a>
+    </h5>
+    <br>
+
+    {% if suggestions %}
+        <h5>Here are some suggestions on your writing:</h5>
+        <p id="proof_read">
+            {{suggestions | safe}}
+        </p>
+
+        <p>Edit your message with the suggestions above, and click resubmit.</p>
+    {% endif %}
+
+    <form action="/" method="POST">
+    {% for field in form %}
+        <div class="row">
+            <div class="four columns textright">
+                <span class="form-label">
+                    <span class="vanish">
+                        <i class="fa fa-{{field.render_kw.icon}} fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;
+                    </span>
+                    {{ field.label }}:
+                </span>
+            </div>
+            {% if field.type == 'RadioField' %}
+                <div class="seven columns formfield">
+                {% for subfield in field %}
+                    <span class="radio">{{ subfield() }}&nbsp;&nbsp;{{ subfield.label }}</span>
+                {% endfor %}
+            {% else %}
+                <div class="seven columns formfield"> {{ field() }}
+            {% endif %}
+            {% if field.errors %}
+                <p class="error">
+                {% for error in field.errors %}
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ error }}{% if not loop.last %}<br>{% endif %}
+                {% endfor %}
+                </p>
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <center>
+    <button class="button button-primary" type="submit" value="Submit">
+        <i class="fa fa-check-square fa-fw" aria-hidden="true"></i>&nbsp;{% if suggestions %}re{% endif %}submit
+        </button>
+    </center>
+    </form>
+
+{% if signature %}
+
+    <h4>Click the names below to see the call scripts and emails</h4>
+    <ul class="tab">
+    {% for rep in list_of_reps %}
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openRep(event, '{{rep.name}}')">{{rep.title[:3]}}. {{rep.name}}</a></li>
+    {% endfor %}
+    </ul>
+
+    {% for rep in list_of_reps %}
+
+    <section id="{{rep.name}}" class="tabcontent u-cf">
+
+    <div id="phone" class="six columns">
+        <h5><i class="fa fa-phone-square fa-fw" aria-hidden="true"></i>&nbsp;Call Script</h5>
+        <p>Call {{rep.title}} {{rep.name}} at {{rep.phone}}.</p>
+        <p>Calling your representative’s office is an effective way of making your voice heard
+            on a topic that requires only a short explanation. Please note that the staffer
+            answering your call may not be able to answer your specific question or make a
+            policy statement. If so, ask them to please take a message to the representative
+            on your behalf. Please be polite, respectful, and concise. You can do this! </p>
+        <textarea class="letter" rows="12" type="text" name="phone">
+My name is {{form.data.name}}. I'm calling {{rep.title}} {{rep.name}} to {{form.data.stance}} your stance on {{form.data.subject}}.
+
+{{form.data.body}}
+        </textarea>
+    </div>
+
+    <div id="email" class="six columns">
+        <h5><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</h5>
+        <p>Cut and paste this text into the contact form for <a href={{rep.url}}>{{rep.title}} {{rep.name}}</a>.</p>
+        <textarea class="letter" rows="20" type="text" name="letter">
+The Honorable {{rep.letter_address()}}
+
+Dear {{rep.title}} {{rep.name}},
+
+My name is {{form.data.name}}, and I {{form.data.stance}} your stance on {{form.data.subject}}.
+
+{{form.data.body}}
+
+{{signature}}
+        </textarea>
+    </div>
+
+
+    </section>
+    {% endfor %}
+
+    <br><br>
+    <p class="center">
+        <a href="/" class="button button-primary"><i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Click here to start over</a>
+    </p>
+    </div>
+
+{% endif %}
+
+</div>
+
+<script type="text/javascript">
+function openRep(evt, repName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(repName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 </script>
 
-<link href='/css/policy.css' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<h1>Science Policy Form</h1>
-<a href="/faq">Frequently Asked Questions</a>
-<br><br>
-    <form action="/" method="POST">
-    <table>
-        <tr><td width="100">Name:</td><td><input class="basic" type="text" name="username" value="Brett Morris"></td></tr>
-        <tr><td>Affiliation:</td><td><input class="basic" type="text" name="aff" value="University of Washington"></td></tr>
-        <tr><td>Address:</td><td><input class="basic" type="text" name="street" value="60 Garden St, Cambridge, MA 02138"></td></tr>
-        <tr><td>Stance:</td><td><input class="basic" type="text" name="stance" value="support"></td></tr>
-        <tr><td>Subject:</td><td><input class="basic" type="text" name="subject" value="House Bill 1234"></td></tr>
-      	<tr><td>Body:</td><td>
-        <textarea class="basic" rows="10" cols="50" name="body">Here are my great thoughts...</textarea></td></tr>
-        </table>
-        <br><br>
-        <input class="submit" type="submit" name="my-form" value="Submit">
-    </form>
-</body>
-</html>
+
+{% endblock %}

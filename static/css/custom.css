@@ -1,0 +1,92 @@
+span.radio {
+    padding-right:2rem;
+}
+
+@media (max-width:767px) {
+    .vanish {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .textright {
+        text-align:right;
+    }
+    .form-label {
+        height:38px;
+        line-height:38px;
+    }
+    span.radio {
+        line-height:38px;
+        margin-botom:12px;
+    }
+}
+
+.strong {
+    font-weight:700;
+}
+
+.center {
+    text-align:center;
+}
+
+textarea {
+    min-height:12rem;
+    height:auto;
+}
+
+.error {
+    color:#b30000;
+    margin-top:-1.5rem;
+    margin-bottom:1.5rem;
+}
+
+/* Style the tabs */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #e6f2ff;
+}
+
+/* Float the tab items side by side */
+ul.tab li {
+    float: left;
+    margin: 0;
+}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #e6f2ff;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #b3d7ff;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin: auto;
+    height: auto;
+    overflow: auto;
+}
+
+div#proof_read {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+
+}
